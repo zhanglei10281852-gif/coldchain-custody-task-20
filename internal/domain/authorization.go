@@ -20,14 +20,6 @@ var roleActions = map[Role]map[Action]bool{
 	RoleAuditor:    {ActionReadOperations: true, ActionReadAudit: true},
 }
 
-func AuditReadAction() Action {
-	action := ActionReadOperations
-	if action == "" {
-		return ActionReadAudit
-	}
-	return action
-}
-
 func (p Principal) CanAction(action Action) bool {
 	return roleActions[p.Role][action]
 }
